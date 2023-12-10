@@ -1,7 +1,9 @@
+import os
 import statistics
 import time
 
 import duckdb
+import gdown
 import pandas as pd
 import psycopg2
 import sqlite3
@@ -9,9 +11,18 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine.base import Engine
 
 
+def download_dataset():
+    if not os.path.exists('data/tiny.csv'):
+        if not os.path.exists('data'):
+            os.makedirs('data')
+
+        url = 'https://drive.google.com/uc?export=download&id=1XWCk4XmgdNUZ8E42ktjGpeeKZeTO9YnJ'
+        output = 'data/tiny.csv'
+        gdown.download(url, output, quiet=False)
+
 def execute_query(conn, cur, query):
     times = []
-    for _ in range(20):
+    for _ in range(10):
         start_time = time.perf_counter()
         if isinstance(cur, pd.DataFrame) and callable(query):
             query(cur)
@@ -44,17 +55,19 @@ def round_results(results):
 
 
 def main():
-    df = pd.read_csv('/home/sh1ron/HSE/db-course/data/tiny.csv')
+    download_dataset()
+
+    df = pd.read_csv('./data/tiny.csv')
     if 'Airport_fee' in df.columns:
         df = df.drop(columns=['Airport_fee'])
 
     engine = create_engine('postgresql://postgres:postgres@localhost:5432/postgres')
 
     sqlite_conn = sqlite3.connect('sqlite_database.db')
-    # df.to_sql('trips', sqlite_conn, if_exists='replace', index=False, chunksize=1000)
+    df.to_sql('trips', sqlite_conn, if_exists='replace', index=False)
 
-    duck_conn = duckdb.connect(database=':memory:', read_only=False)
-    duck_conn.execute("CREATE TABLE trips AS SELECT * FROM df")
+    duck_conn = duckdb.connect(database='duckdb_database.db', read_only=False)
+    duck_conn.from_df(df).create_view('trips')
 
     conn = psycopg2.connect(
         dbname='postgres',

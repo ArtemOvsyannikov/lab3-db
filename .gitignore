@@ -4,3 +4,5 @@ docker-compose.yaml
 .pgadmin/
 .postgresql/
 data/
+duckdb_database.db
+sqlite_database.db
