@@ -4,4 +4,6 @@
 
 ### 1) Установка необходимых библиотек
 
-> pip install duckdb gdown pandas psycopg2 sqlalchemy
+```
+pip install duckdb gdown pandas psycopg2 sqlalchemy
+```
