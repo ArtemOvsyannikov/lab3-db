@@ -12,12 +12,12 @@ from sqlalchemy.engine.base import Engine
 
 
 def download_dataset():
-    if not os.path.exists('data/tiny.csv'):
-        if not os.path.exists('data'):
-            os.makedirs('data')
+    if not os.path.exists('../data/tiny.csv'):
+        if not os.path.exists('../data'):
+            os.makedirs('../data')
 
         url = 'https://drive.google.com/uc?export=download&id=1XWCk4XmgdNUZ8E42ktjGpeeKZeTO9YnJ'
-        output = 'data/tiny.csv'
+        output = '../data/tiny.csv'
         gdown.download(url, output, quiet=False)
 
 def execute_query(conn, cur, query):
@@ -57,7 +57,7 @@ def round_results(results):
 def main():
     download_dataset()
 
-    df = pd.read_csv('./data/tiny.csv')
+    df = pd.read_csv('../data/tiny.csv')
     if 'Airport_fee' in df.columns:
         df = df.drop(columns=['Airport_fee'])
 
