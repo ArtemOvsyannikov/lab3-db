@@ -28,15 +28,15 @@ python3 lab3.py
 
 ## II. Визуализация результатов
 
-###### Таблица с результатами запросов
+Таблица с результатами запросов
 
 ![table](https://github.com/ArtemOvsyannikov/lab3-db/blob/main/images/table.png)
 
-###### Гистограмма времени выполнения запросов с группировкой по библиотекам
+Гистограмма времени выполнения запросов с группировкой по библиотекам
 
 ![histogram](https://github.com/ArtemOvsyannikov/lab3-db/blob/main/images/histogram.png)
 
-###### Линейный график увеличения времени выполнения запроса для каждой библиотеки
+Линейный график увеличения времени выполнения запроса для каждой библиотеки
 
 ![line_graph](https://github.com/ArtemOvsyannikov/lab3-db/blob/main/images/line_graph.png)
 
