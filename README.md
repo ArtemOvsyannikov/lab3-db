@@ -26,7 +26,11 @@ git clone https://github.com/ArtemOvsyannikov/lab3-db.git
 python3 lab3.py
 ```
 
-## II. Отчёт по библиотекам
+## II. Визуализация результатов
+
+![table](https://github.com/ArtemOvsyannikov/lab3-db/blob/main/images/results.png)
+
+## III. Отчёт по библиотекам
 
 ### Psycopg2
 
