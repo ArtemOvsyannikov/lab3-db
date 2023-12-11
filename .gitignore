@@ -6,3 +6,4 @@ docker-compose.yaml
 data/
 duckdb_database.db
 sqlite_database.db
+src/__pycache__
