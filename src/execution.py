@@ -28,4 +28,4 @@ def execute_queries(conn, cur, queries):
     return results
 
 def round_results(results):
-    return [round(num, 6) for num in results]
+    return [round(num, 3) for num in results]
